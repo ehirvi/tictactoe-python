@@ -7,8 +7,8 @@ class Button:
         self.x = x
         self.y = y
         self.surface = surface
-        self.text_color = (0,0,0)
-        self.box_color = (255,255,255)
+        self.text_color = (0, 0, 0)
+        self.box_color = (255, 255, 255)
         self.font = pygame.font.SysFont("Courier", font_size, True)
         self.button_text = self.font.render(self.text, True, self.text_color)
         self.width = self.button_text.get_width()
@@ -21,12 +21,12 @@ class Button:
         self.surface.blit(self.button_text, (self.x - self.width / 2, self.y - self.height / 2))
 
     def hover_on_button(self):
-        self.text_color = (255,255,255)
-        self.box_color = (0,0,0)
+        self.text_color = (255, 255, 255)
+        self.box_color = (0, 0, 0)
 
     def hover_off_button(self):
-        self.text_color = (0,0,0)
-        self.box_color = (255,255,255)
+        self.text_color = (0, 0, 0)
+        self.box_color = (255, 255, 255)
 
     def is_pressed(self):
         if pygame.Rect.collidepoint(self.button_box, pygame.mouse.get_pos()):
@@ -39,5 +39,13 @@ class Button:
         
         
 class Square:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, x: float, y: float, width: float, height: float, surface: pygame.Surface) -> None:
+        self.x = x
+        self.y = y
+        self.width = width
+        self.heigth = height
+        self.surface = surface
+        self.rectangle = pygame.Rect(self.x, self.y, self.width, self.heigth)
+
+    def draw_square(self):
+        pygame.draw.rect(self.surface, (0, 0, 0), self.rectangle, 0)

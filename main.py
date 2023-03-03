@@ -22,7 +22,7 @@ def load_game():
     game_font = pygame.font.SysFont("Courier", 32)
     while True:
         grid.check_events(game_buttons)
-        grid.draw_graphics(game_buttons, game_font, DISPLAY_SIZE, GAME_DISPLAY)
+        grid.draw_graphics(game_buttons, game_squares, background_square, game_font, DISPLAY_SIZE, GAME_DISPLAY)
         pygame.display.flip()
         game_clock.tick(60)
 
