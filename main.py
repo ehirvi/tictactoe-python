@@ -8,11 +8,12 @@ def load_menu():
     menu_buttons = menu.load_buttons(DISPLAY_SIZE, GAME_DISPLAY)
     menu_font = pygame.font.SysFont("Courier", 52)
     while True:
-        if menu.check_events(menu_buttons):
-            load_game()
+        menu.check_events(menu_buttons)
         menu.draw_graphics(menu_buttons, menu_font, DISPLAY_SIZE, GAME_DISPLAY)
         pygame.display.flip()
         game_clock.tick(60)
+        if menu.game_started:
+            load_game()
 
 def load_game():
     game_buttons = grid.load_buttons(DISPLAY_SIZE, GAME_DISPLAY)

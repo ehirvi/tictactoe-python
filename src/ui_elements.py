@@ -7,8 +7,8 @@ class Button:
         self.x = x
         self.y = y
         self.surface = surface
-        self.text_color = (0,0,0)
-        self.box_color = (255,255,255)
+        self.text_color = (0, 0, 0)
+        self.box_color = (255, 255, 255)
         self.font = pygame.font.SysFont("Courier", font_size, True)
         self.button_text = self.font.render(self.text, True, self.text_color)
         self.width = self.button_text.get_width()
@@ -21,12 +21,12 @@ class Button:
         self.surface.blit(self.button_text, (self.x - self.width / 2, self.y - self.height / 2))
 
     def hover_on_button(self):
-        self.text_color = (255,255,255)
-        self.box_color = (0,0,0)
+        self.text_color = (255, 255, 255)
+        self.box_color = (0, 0, 0)
 
     def hover_off_button(self):
-        self.text_color = (0,0,0)
-        self.box_color = (255,255,255)
+        self.text_color = (0, 0, 0)
+        self.box_color = (255, 255, 255)
 
     def is_pressed(self):
         if pygame.Rect.collidepoint(self.button_box, pygame.mouse.get_pos()):
