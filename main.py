@@ -1,6 +1,5 @@
 import pygame
 from src import menu, grid
-#import game
 
 def main():
     load_menu()

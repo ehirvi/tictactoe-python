@@ -1,67 +1,59 @@
-from src import players
+import players  # standalone import
+#from src import players    # when imported in main.py
 
-def new_game():
-    GAME_BOARD = [None for i in range(9)]
-    GAME_PLAYERS = ("X", "O")
-    game_turns = 0
-    game_loop()
 
-def restart_game():
-    restart = input("Would you like to play again? (y/n): ")
-    if restart == "y":
-        return True
-    return False
+def start_game():
+    board = [None for i in range(9)]
+    PLAYERS = ("X", "O")
+    turns = 0
 
-def game_loop():
     while True:
-        render_board()
-        current_player = GAME_PLAYERS[game_turns % 2]
-        coordinates = players.player_move(GAME_BOARD, current_player)
-        make_move(coordinates, current_player)
+        render_board(board)
+        player = PLAYERS[turns % 2]
+        coordinates = players.player_move(player, board)    # asks the player for a move
+        make_move(coordinates, player, board)
 
-        if check_for_winner(current_player):
-            render_board()
-            print(f"Player {current_player} has won the game!")
-            if restart_game():
-                new_game()
-            else:
-                break
+        if check_for_winner(player, board):
+            render_board(board)
+            print(f"Player {player} has won the game!")
+            return
 
-        if check_for_draw():
-            render_board()
+        if check_for_draw(board):
+            render_board(board)
             print("It's a draw!")
-            if restart_game():
-                new_game()
-            else:
-                break
+            return
 
-        game_turns += 1
-            
+        turns += 1
 
-def check_for_winner(current_player):
+
+def check_for_winner(player: str, board: list):
     winning_rows = [(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]
     for i in winning_rows:
-        if GAME_BOARD[i[0]] == current_player and GAME_BOARD[i[1]] == current_player and GAME_BOARD[i[2]] == current_player:
+        if board[i[0]] == player and board[i[1]] == player and board[i[2]] == player:
             return True
     return False
 
 
-def check_for_draw():
-    if None not in GAME_BOARD:
+def check_for_draw(board: list):
+    if None not in board:
         return True
     return False
 
-def render_board():
+
+def render_board(board: list):
     print()
     for i in range(9):
         if i == 3 or i == 6:
             print()
-        if GAME_BOARD[i] == None:
-            print("_", end=" ")
+        if board[i] == None:
+            print("_", end = " ")
         else:
-            print(GAME_BOARD[i], end=" ")
-        print("\n" * 2)
+            print(board[i], end = " ")
+    print("\n" * 2)
 
 
-def make_move(coordinates: int, player: str):
-    GAME_BOARD[coordinates] = player
+def make_move(coordinates: int, player: str, board: list):
+    board[coordinates] = player
+
+
+#start_game()
