@@ -1,4 +1,5 @@
 import pygame
+import json
 from src import menu, grid
 
 def main():
@@ -13,7 +14,7 @@ def load_menu():
         if menu.check_events(menu_buttons):
             load_game()
         menu.draw_graphics(menu_buttons, menu_font, DISPLAY_SIZE, GAME_DISPLAY)
-        game_clock.tick(60)
+        GAME_CLOCK.tick(60)
 
 
 def load_game():
@@ -24,12 +25,20 @@ def load_game():
     while True:
         grid.check_events(game_buttons, game_squares)
         grid.draw_graphics(game_buttons, game_squares, background_square, game_font, DISPLAY_SIZE, GAME_DISPLAY)
-        game_clock.tick(60)
+        GAME_CLOCK.tick(60)
+
+
+def load_settings():
+    with open("settings.json") as file:
+        content = file.read()
+        settings = json.loads(content)
+        resolution = settings["resolution"].split(";")
+        return (int(resolution[0]), int(resolution[1]))
 
 
 pygame.init()
-game_clock = pygame.time.Clock()
-DISPLAY_SIZE = (1280, 960)
+GAME_CLOCK = pygame.time.Clock()
+DISPLAY_SIZE = load_settings()
 GAME_DISPLAY = pygame.display.set_mode((DISPLAY_SIZE))
 pygame.display.set_caption("Tic Tac Toe")
 main()
