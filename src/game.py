@@ -1,5 +1,4 @@
-import players  # standalone import
-#from src import players    # when imported in main.py
+from src import players
 
 
 def start_game():
