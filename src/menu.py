@@ -19,9 +19,10 @@ def check_events(buttons):
                 exit()
 
 def draw_graphics(buttons: dict, font: pygame.font, display_size: tuple, display: pygame.Surface):
-    display.fill((100, 100, 100))
+    display.fill((70, 130, 180))
     menu_title = font.render("Tic Tac Toe", True, (255, 255, 255))
     display.blit(menu_title, (display_size[0] / 2 - menu_title.get_width() / 2, display_size[1] / 2 - menu_title.get_height() / 2))
     buttons["New_Game"].draw_button()
+    pygame.display.flip()
 
 game_started = False
