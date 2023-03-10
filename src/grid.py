@@ -1,9 +1,11 @@
 import pygame
 from src import ui_elements
+from src import game
 
 def load_buttons(display_size: tuple, display: pygame.Surface):
     buttons = {}
-    buttons["New_Game"] = ui_elements.Button("New Game", 38, display_size[0] / 2, display_size[1] / 2 + display_size[1] / 3, display)
+    buttons["New_Game"] = ui_elements.Button("New Game", 32, display_size[0] / 2, display_size[1] / 2 + display_size[1] / 3, display)
+    return buttons
 
 
 def load_game_squares(background_square_size: tuple, display_size: tuple, display: pygame.Surface):
@@ -28,6 +30,7 @@ def check_events(buttons: dict, game_squares: dict):
     events = pygame.event.get()
 
     are_squares_pressed_on(game_squares)
+    buttons["New_Game"].is_pressed()
 
     for event in events:
         if event.type == pygame.QUIT:
@@ -46,6 +49,7 @@ def draw_graphics(buttons: dict, squares: dict, background_square: pygame.Rect, 
     display.fill((70, 130, 180))
     draw_background_square(background_square, display)
     draw_game_squares(squares)
+    buttons["New_Game"].draw_button()
     pygame.display.flip()
 
 
