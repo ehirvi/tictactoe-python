@@ -1,6 +1,6 @@
 import pygame
 import json
-from src import menu, grid
+from src import menu, grid, game
 
 def main():
     load_menu()
@@ -23,9 +23,11 @@ def load_game():
     background_square = grid.load_background_square(DISPLAY_SIZE)
     game_squares = grid.load_game_squares((background_square.width, background_square.height), DISPLAY_SIZE, GAME_DISPLAY)
     game_font = pygame.font.SysFont("Courier", 32)
+    game.start_game()
     while True:
+        player = game.PLAYERS[game.turns % 2]
         grid.check_events(game_buttons, game_squares)
-        grid.draw_graphics(game_buttons, game_squares, background_square, game_font, DISPLAY_SIZE, GAME_DISPLAY)
+        grid.draw_graphics(game.board, game_buttons, game_squares, background_square, game_font, DISPLAY_SIZE, GAME_DISPLAY)
         GAME_CLOCK.tick(60)
 
 

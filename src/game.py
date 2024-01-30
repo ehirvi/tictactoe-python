@@ -2,27 +2,28 @@ from src import players
 
 
 def start_game():
+    global board, PLAYERS, turns
     board = [None for i in range(9)]
     PLAYERS = ("X", "O")
     turns = 0
 
-    while True:
-        render_board(board)
+    """while True:
+        render_board(board) # update grid
         player = PLAYERS[turns % 2]
         coordinates = players.player_move(player, board)    # asks the player for a move
         make_move(coordinates, player, board)
 
         if check_for_winner(player, board):
-            render_board(board)
+            render_board(board) # update grid
             print(f"Player {player} has won the game!")
             return
 
         if check_for_draw(board):
-            render_board(board)
+            render_board(board) # update grid
             print("It's a draw!")
             return
 
-        turns += 1
+        turns += 1"""
 
 
 def check_for_winner(player: str, board: list):
@@ -39,7 +40,7 @@ def check_for_draw(board: list):
     return False
 
 
-def render_board(board: list):
+"""def render_board(board: list):
     print()
     for i in range(9):
         if i == 3 or i == 6:
@@ -48,11 +49,12 @@ def render_board(board: list):
             print("_", end = " ")
         else:
             print(board[i], end = " ")
-    print("\n" * 2)
+    print("\n" * 2)"""
 
 
 def make_move(coordinates: int, player: str, board: list):
     board[coordinates] = player
+
 
 
 #start_game()

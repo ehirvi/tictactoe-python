@@ -45,11 +45,12 @@ def are_squares_pressed_on(squares: dict):
         i.is_pressed()
 
 
-def draw_graphics(buttons: dict, squares: dict, background_square: pygame.Rect, font: pygame.font.Font, display_size: tuple, display: pygame.Surface):
+def draw_graphics(board: list, buttons: dict, squares: dict, background_square: pygame.Rect, font: pygame.font.Font, display_size: tuple, display: pygame.Surface):
     display.fill((70, 130, 180))
     draw_background_square(background_square, display)
     draw_game_squares(squares)
     buttons["New_Game"].draw_button()
+    draw_players(squares, board)
     pygame.display.flip()
 
 
@@ -60,3 +61,9 @@ def draw_game_squares(squares: dict):
 
 def draw_background_square(square: pygame.Rect, display: pygame.Surface):
     pygame.draw.rect(display, (255, 255, 255), square, 10, 5)
+
+
+def draw_players(squares: dict, board: list):
+    for i in range(len(board)):
+        if board[i] != None:
+            squares[f"square_{i}"].player = board[i]
